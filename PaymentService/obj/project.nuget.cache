@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "5JDH5GDRpkw=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Victus\\Desktop\\OutboxPatternDemo\\PaymentService\\PaymentService.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Victus\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.8\\microsoft.aspnetcore.openapi.10.0.8.nupkg.sha512",
+    "C:\\Users\\Victus\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512",
+    "C:\\Users\\Victus\\.nuget\\packages\\rabbitmq.client\\7.2.1\\rabbitmq.client.7.2.1.nupkg.sha512"
+  ],
+  "logs": []
+}

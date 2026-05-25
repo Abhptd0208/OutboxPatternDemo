@@ -1,0 +1,11 @@
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\bin\Debug\net10.0\SharedKernel.deps.json
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\bin\Debug\net10.0\SharedKernel.dll
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\bin\Debug\net10.0\SharedKernel.pdb
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\SharedKernel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\SharedKernel.AssemblyInfoInputs.cache
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\SharedKernel.AssemblyInfo.cs
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\SharedKernel.csproj.CoreCompileInputs.cache
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\SharedKernel.dll
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\refint\SharedKernel.dll
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\SharedKernel.pdb
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\ref\SharedKernel.dll
