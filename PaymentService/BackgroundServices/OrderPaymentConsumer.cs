@@ -1,4 +1,5 @@
-﻿using RabbitMQ.Client;
+﻿using PaymentService.Infrastructure;
+using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using SharedKernel;
 using System.Text;
@@ -12,10 +13,12 @@ namespace PaymentService.BackgroundServices
         private IConnection? _connection;
         private IChannel? _channel;
         private string? _queueName;
+        private readonly IMessageBus _messageBus;
 
-        public OrderPaymentConsumer(ILogger<OrderPaymentConsumer> logger)
+        public OrderPaymentConsumer(ILogger<OrderPaymentConsumer> logger, IMessageBus messageBus)
         {
             _logger = logger;
+            _messageBus = messageBus;
             InitializeRabbitMq();
         }
         private void InitializeRabbitMq()
@@ -45,14 +48,23 @@ namespace PaymentService.BackgroundServices
                 {
                     var body = ea.Body.ToArray();
                     var messagePayload = Encoding.UTF8.GetString(body);
-
                     var orderEvent = JsonSerializer.Deserialize<OrderCreatedEvent>(messagePayload);
 
                     if (orderEvent != null)
                     {
                         // DB Simulation This is where we would interact with our PaymentDb
-                        _logger.LogInformation("Charging customer card for Order ID: {OrderId} | Amount: ${Amount}",
-                            orderEvent.OrderId, orderEvent.TotalAmount);
+                        if (orderEvent.TotalAmount > 100)
+                        {
+                            _logger.LogWarning("Payment Declined! Amount ${Amount} exceeds limit for order {id}", orderEvent.TotalAmount, orderEvent.OrderId);
+                            var failedEvent = new PaymentFailedEvent(orderEvent.OrderId, "Card Declined: Insufficient Funds");
+                            await _messageBus.PublishAsync("order-exchange", "PaymentFailedEvent", JsonSerializer.Serialize(failedEvent));
+                        }
+                        else
+                        {
+                            _logger.LogInformation("Payment successful for Order {Id}", orderEvent.OrderId);
+                            var successEvent = new PaymentSuccessEvent(orderEvent.OrderId, orderEvent.CustomerId, orderEvent.TotalAmount);
+                            await _messageBus.PublishAsync("order-exchange", "PaymentSuccessEvent", JsonSerializer.Serialize(successEvent));
+                        }
                     }
 
                     // Acknowledge receipt

@@ -17,6 +17,7 @@ builder.Services.AddDbContext<OrderDbContext>(
 builder.Services.AddSingleton<IMessageBus, RabbitMqBus>();
 
 builder.Services.AddHostedService<OutboxProcessor>();
+builder.Services.AddHostedService<OrderSagaResponseConsumer>();
 
 builder.Services.AddCors(options =>
 {

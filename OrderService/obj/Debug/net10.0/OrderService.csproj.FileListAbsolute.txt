@@ -163,3 +163,4 @@ C:\Users\Victus\Desktop\OutboxPatternDemo\OrderService\obj\Debug\net10.0\OrderSe
 C:\Users\Victus\Desktop\OutboxPatternDemo\OrderService\obj\Debug\net10.0\OrderService.genruntimeconfig.cache
 C:\Users\Victus\Desktop\OutboxPatternDemo\OrderService\obj\Debug\net10.0\ref\OrderService.dll
 C:\Users\Victus\Desktop\OutboxPatternDemo\OrderService\bin\Debug\net10.0\RabbitMQ.Client.dll
+C:\Users\Victus\Desktop\OutboxPatternDemo\OrderService\obj\Debug\net10.0\OrderService.sourcelink.json

@@ -9,3 +9,4 @@ C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\SharedK
 C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\refint\SharedKernel.dll
 C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\SharedKernel.pdb
 C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\ref\SharedKernel.dll
+C:\Users\Victus\Desktop\OutboxPatternDemo\SharedKernel\obj\Debug\net10.0\SharedKernel.sourcelink.json

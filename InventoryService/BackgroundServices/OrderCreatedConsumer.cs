@@ -28,11 +28,12 @@ namespace InventoryService.BackgroundServices
 
             _channel.ExchangeDeclareAsync(exchange: "order-exchange", type: ExchangeType.Topic, durable: true).GetAwaiter().GetResult();
 
-            _queueName = "inventory-service-queue";
+            _queueName = "inventory-saga-queue";
             _channel.QueueDeclareAsync(queue: _queueName, durable:true, exclusive:false, autoDelete:false).GetAwaiter().GetResult();
 
-            _channel.QueueBindAsync(queue: _queueName, exchange: "order-exchange", routingKey: "OrderCreatedEvent")
-                .GetAwaiter().GetResult();
+            _channel.QueueBindAsync(_queueName, "order-exchange", "PaymentSuccessEvent").GetAwaiter().GetResult();
+            _channel.QueueBindAsync(_queueName, "order-exchange", "PaymentFailedEvent").GetAwaiter().GetResult();
+            
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -43,32 +44,25 @@ namespace InventoryService.BackgroundServices
 
             consumer.ReceivedAsync += async (model, ea) =>
             {
-                try
+                var body = ea.Body.ToArray();
+                var messagePayload = Encoding.UTF8.GetString(body);
+                var routingKey = ea.RoutingKey;
+
+                if(routingKey == "PaymentSuccessEvent")
                 {
-                    var body = ea.Body.ToArray();
-                    var messagePayload = Encoding.UTF8.GetString(body);
-
-                    _logger.LogInformation("Received Raw Message in Inventory: {Message}", messagePayload);
-
-                    var orderEvent = JsonSerializer.Deserialize<OrderCreatedEvent>(messagePayload);
-
-                    if (orderEvent != null)
-                    {
-                        _logger.LogInformation("Deducting inventory for Order ID: {OrderId} | Total Amount: {Amount}",
-                            orderEvent.OrderId, orderEvent.TotalAmount);
-
-                        //  Inject our InventoryDbContext here to decrease stock!
-                    }
-
-                    await _channel!.BasicAckAsync(deliveryTag: ea.DeliveryTag, multiple: false);
+                    var successData = JsonSerializer.Deserialize<PaymentSuccessEvent>(messagePayload);
+                    _logger.LogInformation("Payment verified. Deducing stock for Order : {Id}", successData.OrderId);
                 }
-                catch (Exception ex)
+                else if(routingKey == "PaymentFailedEvent")
                 {
-                    _logger.LogError(ex, "Error processing inventory deduction event.");
+                    var failedData = JsonSerializer.Deserialize<PaymentFailedEvent>(messagePayload);
+                    _logger.LogWarning("Restoring stock items for Order: {Id} due to: {Reason}",
+            failedData.OrderId, failedData.Reason);
 
-                    await _channel!.BasicNackAsync(deliveryTag: ea.DeliveryTag, multiple: false, requeue: true);
+                    // DB Work to put stock back or mark inventory allocation as cancelled
                 }
             };
+
             await _channel!.BasicConsumeAsync(queue: _queueName!, autoAck: false, consumer: consumer, cancellationToken:stoppingToken);
 
             while (!stoppingToken.IsCancellationRequested)

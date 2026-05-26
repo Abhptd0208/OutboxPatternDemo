@@ -35,3 +35,4 @@ C:\Users\Victus\Desktop\OutboxPatternDemo\InventoryService\obj\Debug\net10.0\Inv
 C:\Users\Victus\Desktop\OutboxPatternDemo\InventoryService\obj\Debug\net10.0\InventoryService.genruntimeconfig.cache
 C:\Users\Victus\Desktop\OutboxPatternDemo\InventoryService\obj\Debug\net10.0\ref\InventoryService.dll
 C:\Users\Victus\Desktop\OutboxPatternDemo\InventoryService\bin\Debug\net10.0\RabbitMQ.Client.dll
+C:\Users\Victus\Desktop\OutboxPatternDemo\InventoryService\obj\Debug\net10.0\InventoryService.sourcelink.json

@@ -35,3 +35,4 @@ C:\Users\Victus\Desktop\OutboxPatternDemo\PaymentService\obj\Debug\net10.0\Payme
 C:\Users\Victus\Desktop\OutboxPatternDemo\PaymentService\obj\Debug\net10.0\PaymentService.genruntimeconfig.cache
 C:\Users\Victus\Desktop\OutboxPatternDemo\PaymentService\obj\Debug\net10.0\ref\PaymentService.dll
 C:\Users\Victus\Desktop\OutboxPatternDemo\PaymentService\bin\Debug\net10.0\RabbitMQ.Client.dll
+C:\Users\Victus\Desktop\OutboxPatternDemo\PaymentService\obj\Debug\net10.0\PaymentService.sourcelink.json
