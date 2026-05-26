@@ -12,9 +12,7 @@ To solve this, I implemented the Outbox Pattern in .NET Web API using SQL Server
 
 Instead of writing to two different systems simultaneously, everything happens in one atomic local database transaction:
 1. The API saves the business entity (Order) and serializes the event payload into a dedicated `OutboxMessages` table in the same DB transaction. 
-
 2. A separate background worker (`BackgroundService`) continuously polls the Outbox table for unprocessed messages.
-
 3. The worker publishes the pending event to RabbitMQ and marks it as processed only after receiving a successful broker acknowledgment.
 
 By decoupling the database commit from the message broadcast, the system now guarantees At-Least-Once Delivery. Even if RabbitMQ goes completely offline or a network partition occurs:
