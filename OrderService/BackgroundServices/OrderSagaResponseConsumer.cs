@@ -65,7 +65,7 @@ namespace OrderService.BackgroundServices
                             if (order != null)
                             {
                                 order.Status = "Confirmed"; //Update Status
-                                _logger.LogInformation("✅ Order {Id} status updated to CONFIRMED.", successEvent.OrderId);
+                                _logger.LogInformation("Order {Id} status updated to CONFIRMED.", successEvent.OrderId);
                             }
                         }
                     }
