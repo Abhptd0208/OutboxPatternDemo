@@ -25,3 +25,4 @@ Huge shoutout to the asynchronous capabilities of the modern RabbitMQ.Client (v7
 Onwards to exploring Sagas next to handle distributed rollbacks.⚡
 
 <img width="1761" height="633" alt="image" src="https://github.com/user-attachments/assets/24865c4f-f016-4e94-b3f7-66cdbdf54040" />
+<img width="1919" height="1049" alt="Screenshot 2026-05-25 175937" src="https://github.com/user-attachments/assets/13ff1f22-0aeb-4489-9094-034cd1fa5b5c" />
